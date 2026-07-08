@@ -1,0 +1,35 @@
+classDiagram
+    class Task {
+        +str description
+        +str time
+        +str frequency
+        +bool completed
+        +mark_complete()
+    }
+
+    class Pet {
+        +str name
+        +str species
+        +int age
+        +list~Task~ tasks
+        +add_task(task)
+        +pending_tasks()
+    }
+
+    class Owner {
+        +str name
+        +list~Pet~ pets
+        +add_pet(pet)
+        +all_tasks()
+    }
+
+    class Scheduler {
+        +Owner owner
+        +get_all_tasks()
+        +sort_by_time()
+        +todays_schedule()
+    }
+
+    Owner "1" --> "*" Pet : has
+    Pet "1" --> "*" Task : owns
+    Scheduler --> Owner : reads tasks from
